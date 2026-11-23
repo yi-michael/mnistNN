@@ -1,10 +1,12 @@
 import pygame as pg
 import numpy as np
+from pathlib import Path
 
 OUTPUTS = 10
 RES = 28
 LAYERS = 2
 LAYERSIZE = 50
+MODEL_PATH = Path(__file__).resolve().with_name("model.txt")
 
 class Neuron:
     def __init__(self):
@@ -51,7 +53,7 @@ def softmax():
 def initLayers():
     print("Creating the neural net...")
     try:
-        with open("model.txt", "r") as cin2:
+        with MODEL_PATH.open("r") as cin2:
             global LAYERS, LAYERSIZE
             LAYERS, LAYERSIZE = map(int, cin2.readline().split())
             layers.extend([Layer() for _ in range(LAYERS + 2)])
